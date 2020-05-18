@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import shortid from 'shortid'
 
 import Idea from '../Idea'
 import { insert } from '../dataSource'
@@ -18,7 +19,7 @@ async function createIdea({
 }): Promise<Idea> {
   verifyIdeaParams({ content, impact, ease, confidence })
 
-  const id = 'TODO' // TODO
+  const id = shortid.generate()
   const idea = new Idea(id, content, impact, ease, confidence)
 
   await insert(idea)

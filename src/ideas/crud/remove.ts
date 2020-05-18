@@ -11,6 +11,6 @@ export default async function (req: Request, res: Response): Promise<void> {
   } catch (error) {
     logger.error(error.message)
 
-    res.status(400).send({ message: error.message })
+    res.status(error.statusCode).send({ message: error.message })
   }
 }

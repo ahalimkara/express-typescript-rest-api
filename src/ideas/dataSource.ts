@@ -1,5 +1,5 @@
 import Idea from './Idea'
-import InvalidParam from '../errors/InvalidParam'
+import NotFound from '../errors/NotFound'
 
 // for simplicity we use in-memory storage, for a real data storage this file needs to be edited
 const ideas: Idea[] = []
@@ -30,6 +30,6 @@ export const remove = async (id: string): Promise<void> => {
   if (index >= 0) {
     ideas.splice(index, 1)
   } else {
-    throw new InvalidParam('Cannot find the idea by id')
+    throw new NotFound('Cannot find the idea by id')
   }
 }
