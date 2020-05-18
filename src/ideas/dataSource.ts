@@ -20,8 +20,8 @@ export const findAll = async (page: number): Promise<Idea[]> => {
   const start = (page - 1) * 10
 
   return ideas
-    .slice(start, start + 10)
     .sort((a, b) => b.averageScore - a.averageScore)
+    .slice(start, start + 10)
 }
 
 export const remove = async (id: string): Promise<void> => {

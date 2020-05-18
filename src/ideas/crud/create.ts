@@ -3,6 +3,7 @@ import { Request, Response } from 'express'
 import Idea from '../Idea'
 import { insert } from '../dataSource'
 import verifyIdeaParams from '../../helpers/verifyIdeaParams'
+import logger from '../../helpers/logger'
 
 async function createIdea({
   content,
@@ -25,13 +26,16 @@ async function createIdea({
   return idea
 }
 
-export default async function create(req: Request, res: Response) {
+export default async function create(
+  req: Request,
+  res: Response
+): Promise<void> {
   try {
     const idea = await createIdea(req.body)
 
     res.status(201).send(idea.toJSON())
   } catch (error) {
-    // TODO log
+    logger.error(error.message)
 
     res.status(400).send({ message: error.message })
   }

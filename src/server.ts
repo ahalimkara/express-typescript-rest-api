@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
+import morgan from 'morgan'
 
 import ideasRouter from './ideas/router'
 import errorHandler from './middleware/errorHandler'
@@ -13,6 +14,7 @@ const PORT: number = parseInt(process.env.PORT as string, 10) || 3000
 
 const app = express()
 
+app.use(morgan('combined'))
 app.use(helmet())
 app.use(cors())
 app.use(express.json())
