@@ -1,0 +1,35 @@
+{
+  "name": "express-typescript-rest-api",
+  "version": "1.0.0",
+  "description": "Express Rest API with JWT Authentication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Hello\""
+  },
+  "keywords": [
+    "node",
+    "express",
+    "typescript",
+    "rest",
+    "api",
+    "jwt",
+    "authentication",
+    "boilerplate"
+  ],
+  "author": "Abdulhalim Kara",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.6",
+    "@types/helmet": "0.0.47",
+    "@types/node": "^14.0.1",
+    "typescript": "^3.9.2"
+  }
+}
