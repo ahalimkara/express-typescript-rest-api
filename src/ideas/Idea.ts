@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 export default class Idea {
   public createdAt: number
 
@@ -15,5 +16,17 @@ export default class Idea {
     return parseFloat(
       ((this.impact + this.ease + this.confidence) / 3).toFixed(2)
     )
+  }
+
+  toJSON(): Record<string, number | string> {
+    return {
+      id: this.id,
+      content: this.content,
+      impact: this.impact,
+      ease: this.ease,
+      confidence: this.confidence,
+      average_score: this.averageScore,
+      created_at: this.createdAt,
+    }
   }
 }

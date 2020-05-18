@@ -1,17 +1,15 @@
-import express, { Request, Response } from 'express'
-import createIdea from './create'
-import Idea from './Idea'
+import express from 'express'
 
-export const ideasRouter = express.Router()
+import create from './crud/create'
+import read from './crud/read'
+import remove from './crud/remove'
+import update from './crud/update'
 
-ideasRouter.post('/', async (req: Request, res: Response) => {
-  try {
-    const idea: Idea = await createIdea(req.body)
+const ideasRouter = express.Router()
 
-    res.sendStatus(201).send(idea)
-  } catch (error) {
-    // TODO log
+ideasRouter.get('/', read)
+ideasRouter.post('/', create)
+ideasRouter.put('/:id', update)
+ideasRouter.delete('/:id', remove)
 
-    res.status(400).send(error.message)
-  }
-})
+export default ideasRouter

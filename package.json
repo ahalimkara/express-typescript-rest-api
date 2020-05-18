@@ -2,25 +2,13 @@
   "name": "express-typescript-rest-api",
   "version": "1.0.0",
   "description": "Express Rest API with JWT Authentication",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/server",
+    "start": "node dist/index",
     "webpack": "webpack --config webpack.config.ts",
     "test": "echo \"Hello\"",
     "lint": "eslint 'src/**/*.ts'"
   },
-  "keywords": [
-    "node",
-    "express",
-    "typescript",
-    "rest",
-    "api",
-    "jwt",
-    "authentication",
-    "boilerplate"
-  ],
-  "author": "Abdulhalim Kara",
-  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -56,5 +44,17 @@
   },
   "lint-staged": {
     "src/**/*.ts": "eslint --cache"
-  }
+  },
+  "author": "Abdulhalim Kara",
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "express",
+    "typescript",
+    "rest",
+    "api",
+    "jwt",
+    "authentication",
+    "boilerplate"
+  ]
 }

@@ -1,11 +1,9 @@
-import Idea from './Idea'
-import { insert } from './dataSource'
 import InvalidParam from '../errors/InvalidParam'
 import isValidScore from '../helpers/isValidScore'
 
 const MAX_CONTENT_LENGTH = 255
 
-export default async function createIdea({
+export default function verifyIdeaParams({
   content,
   impact,
   ease,
@@ -15,36 +13,30 @@ export default async function createIdea({
   impact: any
   ease: any
   confidence: any
-}): Promise<Idea> {
+}): void {
   if (
     !content ||
     typeof content !== 'string' ||
     content.length > MAX_CONTENT_LENGTH
   ) {
     throw new InvalidParam(
-      'Content param should be a valid string min 1 char, max 255 chars'
+      'Content should be a valid string min 1 char, max 255 chars'
     )
   }
+
   if (!isValidScore(impact)) {
     throw new InvalidParam(
-      'Impact param should a valid integer between 1 to 10'
+      'Impact score should a valid integer between 1 to 10'
     )
   }
+
   if (!isValidScore(ease)) {
-    throw new InvalidParam(
-      'Impact param should a valid integer between 1 to 10'
-    )
+    throw new InvalidParam('Ease score should a valid integer between 1 to 10')
   }
+
   if (!isValidScore(confidence)) {
     throw new InvalidParam(
-      'Impact param should a valid integer between 1 to 10'
+      'Confidence score should a valid integer between 1 to 10'
     )
   }
-
-  const id = 'TODO' // TODO
-  const idea = new Idea(id, content, impact, ease, confidence)
-
-  await insert(idea)
-
-  return idea
 }
