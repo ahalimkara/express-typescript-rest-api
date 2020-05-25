@@ -4,9 +4,10 @@ import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 
-import ideasRouter from './ideas/router'
 import errorHandler from './middleware/errorHandler'
 import notFoundHandler from './middleware/notFoundHandler'
+import ideasRouter from './ideas/router'
+import usersRouter from './users/router'
 
 dotenv.config()
 
@@ -20,6 +21,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/ideas', ideasRouter)
+app.use('/users', usersRouter)
+// TODO on logout, remove the refresh token from the storage
 
 app.use(errorHandler)
 app.use(notFoundHandler)
