@@ -32,8 +32,3 @@ app.use(notFoundHandler)
 const server = app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
 })
-
-if (module.hot) {
-  module.hot.accept()
-  module.hot.dispose(() => server.close())
-}
