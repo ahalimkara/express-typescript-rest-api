@@ -8,6 +8,7 @@ import errorHandler from './middleware/errorHandler'
 import notFoundHandler from './middleware/notFoundHandler'
 import ideasRouter from './ideas/router'
 import usersRouter from './users/router'
+import tokensRouter from './accessTokens/router'
 
 dotenv.config()
 
@@ -22,6 +23,7 @@ app.use(express.json())
 
 app.use('/ideas', ideasRouter)
 app.use('/users', usersRouter)
+app.use('/access-tokens', tokensRouter)
 // TODO on logout, remove the refresh token from the storage
 
 app.use(errorHandler)

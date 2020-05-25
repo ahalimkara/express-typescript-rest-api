@@ -1,16 +1,16 @@
 import jwt from 'jsonwebtoken'
 import { v4 as uuid } from 'uuid'
 
-import Token from './Token'
-
-// Ideally this should be implemented more secure with something like in this article: https://medium.com/@siddharthac6/json-web-token-jwt-the-right-way-of-implementing-with-node-js-65b8915d550e
-// but for simplicity i will implement it with minimum requirements
-const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET as string
-const ACCESS_TOKEN_EXPIRES_IN = process.env.ACCESS_TOKEN_EXPIRES_IN as string
+import Token from '../accessTokens/Token'
 
 const tokens = []
 
+// Ideally this should be implemented more secure with something like in this article: https://medium.com/@siddharthac6/json-web-token-jwt-the-right-way-of-implementing-with-node-js-65b8915d550e
+// but for simplicity i will implement it with minimum requirements
 export const generateToken = (id: string): Token => {
+  const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET as string
+  const ACCESS_TOKEN_EXPIRES_IN = process.env.ACCESS_TOKEN_EXPIRES_IN as string
+
   const accessToken = jwt.sign({ id }, ACCESS_TOKEN_SECRET, {
     expiresIn: ACCESS_TOKEN_EXPIRES_IN,
   })

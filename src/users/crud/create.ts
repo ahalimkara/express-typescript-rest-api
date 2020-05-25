@@ -1,5 +1,4 @@
 import { Request, Response } from 'express'
-import shortid from 'shortid'
 
 import User from '../User'
 import { findBy, insert } from '../dataSource'
@@ -8,6 +7,7 @@ import isValidEmail from '../../helpers/isValidEmail'
 import isValidPassword from '../../helpers/isValidPassword'
 import InvalidParam from '../../errors/InvalidParam'
 import { generateToken } from '../../helpers/Authentication'
+import Token from '../../accessTokens/Token'
 
 async function createUser({
   email,
@@ -17,7 +17,7 @@ async function createUser({
   email: any
   password: any
   name: any
-}): Promise<User> {
+}): Promise<Token> {
   if (!isValidEmail(email)) {
     throw new InvalidParam('Email address should be valid')
   }
@@ -35,12 +35,12 @@ async function createUser({
     throw new InvalidParam('Email address is already being used')
   }
 
-  const id = shortid.generate()
-  const user = new User(id, email, password, name)
+  const user = new User(email, password, name)
+  const token = generateToken(user.id)
 
   await insert(user)
 
-  return user
+  return token
 }
 
 export default async function create(
@@ -48,8 +48,7 @@ export default async function create(
   res: Response
 ): Promise<void> {
   try {
-    const user = await createUser(req.body)
-    const token = generateToken(user.id)
+    const token = await createUser(req.body)
 
     res.status(201).send(token.toJSON())
   } catch (error) {
