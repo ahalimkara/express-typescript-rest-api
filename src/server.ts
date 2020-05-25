@@ -9,6 +9,8 @@ import notFoundHandler from './middleware/notFoundHandler'
 import ideasRouter from './ideas/router'
 import usersRouter from './users/router'
 import tokensRouter from './accessTokens/router'
+import { authorizeMiddleware } from './helpers/Authentication'
+import me from './users/crud/me'
 
 dotenv.config()
 
@@ -21,7 +23,8 @@ app.use(helmet())
 app.use(cors())
 app.use(express.json())
 
-app.use('/ideas', ideasRouter)
+app.use('/ideas', authorizeMiddleware, ideasRouter)
+app.use('/me', authorizeMiddleware, me)
 app.use('/users', usersRouter)
 app.use('/access-tokens', tokensRouter)
 // TODO on logout, remove the refresh token from the storage

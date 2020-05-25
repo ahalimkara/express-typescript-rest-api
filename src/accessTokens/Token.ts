@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 export default class Token {
   constructor(
-    public id: string,
+    public userId: string,
     public accessToken: string,
     public refreshToken: string
   ) {}
