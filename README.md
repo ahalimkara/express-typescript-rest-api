@@ -2,7 +2,8 @@
 - Copy `.env.sample` to `.env`
 - Install dependencies `npm i`
 - Run `npm run dev`
-- Api should be ready via `http://localhost:3000`
+- Api should be ready via http://localhost:3000
+- Online version: https://express-typescript-rest-api.herokuapp.com/
 
 ## Notes
 - This project is tested with Node 10 (some newer versions may not work, see https://github.com/strongloop/loopback-next/issues/5381)
