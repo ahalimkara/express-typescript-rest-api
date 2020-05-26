@@ -27,11 +27,10 @@ app.use('/ideas', authorizeMiddleware, ideasRouter)
 app.use('/me', authorizeMiddleware, me)
 app.use('/users', usersRouter)
 app.use('/access-tokens', tokensRouter)
-// TODO on logout, remove the refresh token from the storage
 
 app.use(errorHandler)
 app.use(notFoundHandler)
 
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
 })

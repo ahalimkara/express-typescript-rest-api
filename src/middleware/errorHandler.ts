@@ -5,8 +5,9 @@ const errorHandler = (
   error: ApiError,
   request: Request,
   response: Response,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction
-) => {
+): void => {
   const status = error.statusCode || 500
   const message = error.message || 'Something went wrong!'
 
